@@ -9,12 +9,12 @@ int main()
 {
     int totalPaper = 0;
     int i = 0;
-    string side1;
-    int side1val;
-    string side2;
-    int side2val;
-    string side3;
-    int side3val;
+    string length;
+    int lengthval;
+    string width;
+    int widthval;
+    string height;
+    int heightval;
 
     ifstream input("2015/day2/day2input.txt");
 
@@ -27,32 +27,38 @@ int main()
     }
     while(!input.eof())
     {        
-        getline(input, side1,'x');
-        side1val = atoi(side1.c_str());
-        getline(input, side2,'x');
-        side2val = atoi(side2.c_str());
-        getline(input, side3,'\n');
-        side3val = atoi(side3.c_str());
+        getline(input, length,'x');
+        lengthval = atoi(length.c_str());
+        getline(input, width,'x');
+        widthval = atoi(width.c_str());
+        getline(input, height,'\n');
+        heightval = atoi(height.c_str());
 
-        int smallestSide = side3val;
+        int side1 = lengthval * widthval;
+        int side2 = widthval * heightval;
+        int side3 = lengthval * heightval;
+        
+        int smallestSide = side3;
 
-        if (side1val < side2val)
+        if (side1 < side2)
         {
-            if (side1val < side3val)
-                smallestSide = side1val;
+            if (side1 < side3)
+                smallestSide = side1;
 
             // else side 3 is smallest
         }
         // then side 2 is smaller than side 1
-        else if (side2val < side3val)
-            smallestSide = side2val;
+        else if (side2 < side3)
+            smallestSide = side2;
 
         // else side 3 is smallest
         
-        int boxPaper =  (2 * (side1val * side1val)) 
-                      + (2 * (side2val * side2val))
-                      + (2 * (side3val * side3val))
-                      + (smallestSide * smallestSide);
+
+        
+        int boxPaper =  (2 * side1) 
+                      + (2 * side2)
+                      + (2 * side3)
+                      + (smallestSide);
 
         totalPaper += boxPaper;
 
