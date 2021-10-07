@@ -20,7 +20,7 @@ string readFileIntoString(const string& path) {
 int main() {
     int floor = 0;
     int position = 0;
-    string filename("2015/day1input.txt");
+    string filename("2015/day1/day1input.txt");
     string file_contents;
 
     file_contents = readFileIntoString(filename);
